@@ -1,0 +1,52 @@
+html, body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    width: 200px;
+    height: 60px;
+    border: 2px solid black;
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow: hidden;
+}
+/* 是字母上下交错显示在容器内 */
+.box span{
+    display: inline-block;
+    color: blue;
+    transition: .5s;
+}
+
+
+.box span:nth-child(odd){
+    transform: translateY(-100%)
+}
+.box span:nth-child(even){
+    transform: translateY(100%)
+}
+
+/* 用伪元素增加文字显示在容器内 */
+
+.box span::before {
+    content: attr(data-text);
+    color: pink;
+    position: absolute;
+}
+.box span:nth-child(odd)::before{ 
+    transform: translateY(100%)
+}
+.box span:nth-child(even)::before{ 
+    transform: translateY(-100%)
+}
+
+/* 设置鼠标滑过动画 */
+
+.box:hover span{
+    transform: translateY(0);
+}
+
+/* 此项目实现思想为伪元素是绑定在span上的..span位置变化的话伪元素位置也会跟着变化 */
